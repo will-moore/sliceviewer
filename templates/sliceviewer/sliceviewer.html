@@ -24,7 +24,8 @@
   <link rel="stylesheet" href="{% static "webemdb/css/sliceviewer.css" %}" type="text/css" media="all" />
 {% endblock %}
 
-{% block after_onload %}
+<!-- called on the initial $(document).ready() -->
+{% block initial_resize %}
 // We can do some customizing as soon as the html has loaded...
 {% comment %}
 - skipping the logo, as we go for an iframe solution instead
@@ -62,7 +63,7 @@ $('#imageViewLink').hide();
 
 
 
-{% endblock after_onload %}
+{% endblock initial_resize %}
 
 
 
