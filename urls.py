@@ -16,4 +16,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from django.conf.urls.defaults import patterns, url
+
 from omeroweb.sliceviewer import views
+from omeroweb.webgateway import views as webgateway_views
+
+urlpatterns = patterns('django.views.generic.simple',
+
+    # we use this within javascript to generate full paths
+    url( r'^$', views.index, name="emdbindex" ),
+
+    # tomogram viewer (customised Image Viewer for single T and C)
+    url( r'^(?P<emdb_entry>\d{4})_sliceviewer/$', views.sliceviewer, name='webemdb_sliceviewer' ),
+    url ( r'^imgData/(?P<iid>[^/]+)/(?:(?P<key>[^/]+)/)?$', webgateway_views.imageData_json ),
+    url( r'^render_image/(?P<iid>[0-9]+)/(?P<z>[0-9]+)/(?P<t>[0-9]+)/$', webgateway_views.render_image, name="emdb_render_image"),
+
+)
