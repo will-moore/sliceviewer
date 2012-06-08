@@ -1,0 +1,46 @@
+/**
+ * slice viewer style definitions overriding 
+ *   omero_image.css and weblitz-viewport.css
+ */
+
+.chan-window-slider { 
+  position: relative;
+  display: block;
+  height: 15px;
+  clear: both;
+}
+
+INPUT.changed { 
+  background-color: #FFFFFF;
+}
+
+.weblitz-viewport-bot {
+  display: none;
+}
+
+.slider-line {
+  background: #A0A0A0;
+}
+
+#header {
+  display: none;
+  height: 1px;
+}
+
+#footer {
+  display: none;
+  height: 1px;
+}
+
+#t-axis-legend {
+  display: none;
+  height: 1px;
+}
+
+#curr-link {
+  display: none;
+}
+
+.viewStatus {
+  font-size: 10px;
+}

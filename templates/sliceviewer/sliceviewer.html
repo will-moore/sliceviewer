@@ -19,9 +19,9 @@
 -->
 {% endcomment %}
 
-{% block extra_css %}
+{% block link %}
 {{ block.super }}
-  <link rel="stylesheet" href="{% static "webemdb/css/sliceviewer.css" %}" type="text/css" media="all" />
+  <link rel="stylesheet" href="{% static "sliceviewer/css/sliceviewer.css" %}" type="text/css" media="all" />
 {% endblock %}
 
 <!-- called on the initial $(document).ready() -->
