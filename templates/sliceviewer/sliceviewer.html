@@ -94,8 +94,41 @@ webgateway/templates/webgateway/omero_image.html
 Styling needs to be cleaned up (and only the first two lines printed, the 
 latter two are just debug info
 {% endcomment %}
+viewport.getViewportSizes = function() {
+    var _this = this;
+    // Calculate currently displayed area in pixel and real dimensions
+    var zoom = _this.viewportimg.get(0).getZoom(); // _this.getZoom() not in sync
+    var px = _this.getPixelSizes();
+    var sz = _this.loadedImg.size
+    var w2 = _this.viewportimg.width() / (zoom * 0.01);
+    var h2 = _this.viewportimg.height() / (zoom * 0.01);
+
+    if (w2 < sz.width) {
+      rv.wp = w2;
+    } else {
+      rv.wp = sz.width;
+    }
+    if (h2 < sz.height) {
+      rv.hp = h2;
+    } else {
+      rv.hp = sz.height;
+    }
+    rv.wr = rv.wp * px.x;
+    rv.hr = rv.hp * px.y;
+    rv.w2 = w2;
+    rv.h2 = h2;
+    rv.w3 = sz.width;
+    rv.h3 = sz.height;
+    rv.zoom = zoom;
+    return rv;
+}
+
 vp = viewport.getViewportSizes();
-viewStatus="<div class='viewStatus'>Image visible on screen<br>Width: "+vp.wp.toFixed(0)+"px "+vp.wr.toFixed(2)+" &Aring;<br>Height: "+vp.hp.toFixed(0)+"px "+vp.hr.toFixed(2)+" &Aring;<br>w: "+vp.w2+"<br>h: "+vp.h2+"<br>3 "+vp.w3+" "+v
+var viewStatus= $("<div class='viewStatus'></div>")
+    .append("Image visible on screen<br>")
+    .append("Width: "+vp.wp.toFixed(0)+"px "+vp.wr.toFixed(2)+" &Aring;<br>")
+    .append("Height: "+vp.hp.toFixed(0)+"px "+vp.hr.toFixed(2)+" &Aring;<br>")
+    .append("w: "+vp.w2+"<br>h: "+vp.h2+"<br>3 "+vp.w3+" "+vp.h3+"<br>zoom: "+vp.zoom);
 
 $('#wblitz-workarea').append(viewStatus);
 
